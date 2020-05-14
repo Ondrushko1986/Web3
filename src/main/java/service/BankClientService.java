@@ -24,15 +24,15 @@ public class BankClientService {
     }
 
     public BankClient getClientByName(String name) {
-        return null;
+        return getBankClientDAO().getClientByName(name);
     }
 
     public List<BankClient> getAllClient() {
-        return  null;
+        return getBankClientDAO().getAllBankClient();
     }
 
-    public boolean deleteClient(String name) {
-        return false;
+    public boolean deleteClient(String name) throws SQLException {
+       getBankClientDAO().deleteClient(name);
     }
 
     public boolean addClient(BankClient client) throws DBException {
