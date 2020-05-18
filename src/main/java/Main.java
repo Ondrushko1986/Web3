@@ -10,6 +10,8 @@ import servlet.MoneyTransactionServlet;
 import servlet.RegistrationServlet;
 import servlet.ResultServlet;
 
+import java.sql.Connection;
+
 public class Main {
     public static void main(String[] args) throws Exception{
         ApiServlet apiServlet = new ApiServlet();
@@ -28,5 +30,6 @@ public class Main {
 
         server.start();
         server.join();
+
     }
 }

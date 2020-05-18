@@ -21,6 +21,9 @@ public class BankClientDAO {
     }
 
     public boolean validateClient(String name, String password) {
+        if (getClientByName(name).getPassword().equals(password)) {
+            return true;
+        }
         return false;
     }
 
