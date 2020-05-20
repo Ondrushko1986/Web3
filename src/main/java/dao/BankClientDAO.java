@@ -42,9 +42,9 @@ public class BankClientDAO {
     public boolean updateClientsMoney(String name, String password, Long transactValue) throws SQLException {
         if (validateClient(name, password)) {
             if (isClientHasSum(name, transactValue)) {
-                try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bank_client SET money = ? WHERE name = ?")){
-                    preparedStatement.setLong(1,getClientByName(name).getMoney() + transactValue);
-                    preparedStatement.setString(2,name);
+                try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bank_client SET money = ? WHERE name = ?")) {
+                    preparedStatement.setLong(1, getClientByName(name).getMoney() + transactValue);
+                    preparedStatement.setString(2, name);
                     preparedStatement.executeUpdate();
                     return true;
                 } catch (SQLException e) {
