@@ -15,7 +15,7 @@ public class BankClientDAO {
     public BankClientDAO(Connection connection) {
         this.connection = connection;
         executor = new Executor(connection);
-    }
+    } // +
 
     public List<BankClient> getAllBankClient() {
         List<BankClient> list = new ArrayList<>();
@@ -30,21 +30,21 @@ public class BankClientDAO {
             e.printStackTrace();
             return null;
         }
-    }
+    } // +
 
-    public boolean validateClient(String name, String password) throws SQLException {
+    public boolean validateClient(String name, String password) {
         if (getClientByName(name).getPassword().equals(password)) {
             return true;
         }
         return false;
-    }
+    } // +
 
-    public boolean updateClientsMoney(String name, String password, Long transactValue) throws SQLException {
+    public boolean updateClientsMoney(String name, String password, Long transactValue) {
         if (validateClient(name, password)) {
             if (isClientHasSum(name, transactValue)) {
-                try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bank_client SET money = ? WHERE name = ?")) {
-                    preparedStatement.setLong(1, getClientByName(name).getMoney() + transactValue);
-                    preparedStatement.setString(2, name);
+                try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE bank_client SET money = ? WHERE name = ?")){
+                    preparedStatement.setLong(1,getClientByName(name).getMoney() + transactValue);
+                    preparedStatement.setString(2,name);
                     preparedStatement.executeUpdate();
                     return true;
                 } catch (SQLException e) {
@@ -53,7 +53,7 @@ public class BankClientDAO {
             }
         }
         return false;
-    }
+    } // +
 
     public BankClient getClientById(long id) throws SQLException {
         return executor.execQuery("select * from bank_client where id=" + id, result -> {
@@ -122,7 +122,7 @@ public class BankClientDAO {
 
     public Connection getConnection() {
         return connection;
-    } // мой метод
+    }
 
     public void delClient(String name) throws SQLException {
         try (Statement stmt = connection.createStatement();) {
