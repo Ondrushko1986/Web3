@@ -23,6 +23,13 @@ public class BankClientService {
         }
     }
 
+    public BankClient getClientByNameAndPassword(String name, String password) {
+        if (getBankClientDAO().validateClient(name, password)) {
+            return getBankClientDAO().getClientByName(name);
+        }
+        return null;
+    }
+
     public BankClient getClientByName(String name) {
         return getBankClientDAO().getClientByName(name);
     }
